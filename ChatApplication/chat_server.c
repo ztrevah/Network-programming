@@ -7,6 +7,7 @@
 #include <arpa/inet.h>
 #include <stdlib.h>
 #include <sys/select.h>
+#include <time.h>
 
 struct client_info {
     char id[128];
@@ -167,14 +168,18 @@ int main() {
                 }
                 // Nếu đã xác định được client thì cho phép gửi tin nhắn 
                 else {
-                    printf("%s: %s\n",clients[i].id,buf);
                     char buf1[1024] = "";
+                    int t = time(NULL);
+                    t += 7 * 3600; // GMT +7
+                    struct datetime dt = curr_datetime(t);
+                    sprintf(buf1,"%d-%d-%d %d:%d:%d ",dt.year,dt.month,dt.date,dt.hour,dt.minute,dt.second);
                     strcat(buf1,clients[i].id);
                     strcat(buf1,": ");
                     strcat(buf1,buf);
                     for(int j=0;j<number_clients;j++) if(j != i && allowed[j] != 0) {
                         send(clients[j].fd,buf1,sizeof(buf1),0);
                     }
+                    printf("%s\n",buf1);
                 }
             }
         }
