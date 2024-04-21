@@ -79,7 +79,8 @@ int checkClientResponse (char *response) {
 int number_clients = 0;
 int main() {
     char requestinfomsg[] = "What is your id: name?\n";
-    char acceptmsg[] = "Now you can send your messsage to other clients";
+    char requestagain[] = "Send your id: name correctly.\n";
+    char acceptmsg[] = "Now you can send your messsage to other clients.\n";
 
     printf("Initializing server at port 9000...\n");
     struct sockaddr_in sa;
@@ -106,7 +107,6 @@ int main() {
     struct client_info clients[16];
     int allowed[16];
     struct timeval tv;
-    char buf[2048];
 
     while(1) {
         FD_ZERO(&fdread);
@@ -137,8 +137,10 @@ int main() {
             strcpy(clients[number_clients].name,"");
             allowed[number_clients] = 0;
             number_clients++;
+            send(client,requestinfomsg,sizeof(requestinfomsg),0);
         }
 
+        char buf[1024] = "";
         for(int i=0;i<number_clients;i++) {
             if(FD_ISSET(clients[i].fd,&fdread)) {
                 int ret2 = recv(clients[i].fd,buf,sizeof(buf),0);
@@ -157,9 +159,11 @@ int main() {
                     if(pos != -1) {
                         allowed[i] = 1;
                         for(int j=0;j<pos;j++) clients[i].id[j] = buf[j];
-                        for(int j=pos+2;j<strlen(buf);j++) clients[i].name[j-pos-2] = buf[j];
+                        // for(int j=pos+2;j<strlen(buf);j++) clients[i].name[j-pos-2] = buf[j];
                         printf("Client %s connected\n", clients[i].id);
+                        send(clients[i].fd,acceptmsg,sizeof(acceptmsg),0);
                     }
+                    else send(clients[i].fd,requestagain,sizeof(requestagain),0);
                 }
                 // Nếu đã xác định được client thì cho phép gửi tin nhắn 
                 else {
@@ -168,7 +172,7 @@ int main() {
                     strcat(buf1,clients[i].id);
                     strcat(buf1,": ");
                     strcat(buf1,buf);
-                    for(int j=0;j<number_clients;j++) if(allowed[i] != 0) {
+                    for(int j=0;j<number_clients;j++) if(j != i && allowed[j] != 0) {
                         send(clients[j].fd,buf1,sizeof(buf1),0);
                     }
                 }

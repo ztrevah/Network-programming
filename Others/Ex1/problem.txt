@@ -1,0 +1,9 @@
+Bài 1.
+Ứng dụng info_client lấy tên thư mục hiện tại, danh sách các tập tin và kích thước (trên máy client). Các dữ liệu này sau đó được đóng gói và chuyển sang info_server.
+Ứng dụng info_server nhận dữ liệu từ info_client, tách các dữ liệu và in ra màn hình.
+Yêu cầu kích thước dữ liệu được gửi là nhỏ nhất.
+Ví dụ:
+/mnt/c/Users/admin/source/baitap
+bai1.c – 12871 bytes
+bai2.c – 1437 bytes
+bai3.c – 1461 bytes

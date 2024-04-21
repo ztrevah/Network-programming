@@ -28,7 +28,7 @@ int main() {
         int file_size = st.st_size;
         char buf[256] = "";
         strcat(buf,file_dir->d_name);
-        strcat(buf," ");
+        strcat(buf," - ");
         char tmp[100] = ""; int i = 0;
         while(file_size > 0) {
             tmp[i] = (file_size % 10) + '0';
