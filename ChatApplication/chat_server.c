@@ -119,8 +119,10 @@ int main() {
             if(clients[i].fd + 1 > maxdp) maxdp = clients[i].fd + 1;
         }
 
+        // Set thời gian timeout
         tv.tv_sec = 5;
         tv.tv_usec = 0;
+
         int ret = select(maxdp,&fdread,NULL,NULL,&tv);
         if(ret < 0) {
             printf("select() failed.\n");
