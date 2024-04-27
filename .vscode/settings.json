@@ -7,6 +7,7 @@
         "inet.h": "c",
         "types.h": "c",
         "stdlib.h": "c",
-        "select.h": "c"
+        "select.h": "c",
+        "unistd.h": "c"
     }
 }
