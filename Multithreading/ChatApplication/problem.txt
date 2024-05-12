@@ -1,0 +1,4 @@
+Sử dụng kỹ thuật đa luồng, lập trình ứng dụng chat nhóm 2 người như sau:
+Mỗi client khi kết nối đến server sẽ được lưu vào hàng đợi, nếu số lượng client trong hàng đợi là 2 thì 2 client này sẽ được ghép cặp với nhau.
+Khi 2 client đã được ghép cặp thì tin nhắn gửi từ client này sẽ được chuyển tiếp sang client kia và ngược lại.
+Nếu 1 trong 2 client ngắt kết nối thì client còn lại cũng được ngắt kết nối.
