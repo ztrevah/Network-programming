@@ -8,6 +8,7 @@
         "types.h": "c",
         "stdlib.h": "c",
         "select.h": "c",
-        "unistd.h": "c"
+        "unistd.h": "c",
+        "pthread.h": "c"
     }
 }

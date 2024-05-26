@@ -1,0 +1,7 @@
+Sinh viên lập trình tạo trang web thực hiện các phép tính đơn giản:
++ Nhận tham số từ lệnh GET
++ Nhận tham số từ lệnh POST
+Các tham số bao gồm:
++ a, b: 2 tham số là 2 toán hạng kiểu số thực
++ cmd: tham số phép tính cần thực hiện, gồm các giá trị add, sub, mul, div ứng với các phép tính cộng, trừ, nhân, chia.
+Server trả lại kết quả là trang web hiển thị phép tính và kết quả.
