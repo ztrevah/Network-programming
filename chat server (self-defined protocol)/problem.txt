@@ -1,0 +1,84 @@
+Thiết kế giao thức ứng dụng Chat server
+• Định dạng thông điệp ở mức text.
+• Server hoạt động chủ động.
+• Server xử lý lần lượt các yêu cầu client.
+• Giao thức làm việc theo phiên.
+• Giao thức được lưu dưới dạng text.
+• Không xác thực người dùng.
+• Giao thức không thực hiện bảo mật.
+• Giao thức gồm các lệnh được gửi từ client lên server, phản hồi từ server về client và các lệnh server chủ động gửi cho các client.
+
+Các lệnh gửi từ client
+JOIN: Client tham gia phòng chat bằng nickname.
+MSG: Gửi tin nhắn cho cả phòng chat.
+PMSG: Gửi tin nhắn cá nhân cho một người dùng.
+OP: Chuyển quyền chủ phòng chat cho người dùng khác. Thực hiện bởi chủ
+phòng chat.
+KICK: Đưa người dùng ra khỏi phòng chat. Thực hiện bởi chủ phòng chat.
+TOPIC: Thiết lập chủ đề cho phòng chat. Thực hiện bởi chủ phòng chat.
+QUIT: Người dùng thoát khỏi phòng chat.
+
+Lệnh JOIN <NICKNAME>
+• NICKNAME chỉ chứa các ký tự chữ thường và chữ số,
+không trùng với những người dùng đã tham gia.
+• Phản hồi từ server
+100 OK
+200 NICKNAME IN USE
+201 INVALID NICK NAME
+999 UNKNOWN ERROR
+
+Lệnh MSG <ROOM MESSAGE>
+• ROOM MESSAGE là chuỗi ký tự bất kỳ kết thúc bởi
+dấu xuống dòng.
+• Phản hồi từ server
+100 OK
+999 UNKNOWN ERROR
+
+Lệnh PMSG <NICKNAME> <MESSAGE>
+• NICKNAME của người nhận
+• MESSAGE thông điệp cần gửi
+• Phản hồi từ server
+100 OK
+202 UNKNOWN NICKNAME
+999 UNKNOWN ERROR
+
+Lệnh OP <NICKNAME>
+• NICKNAME của người được chuyển quyền.
+• Được thực hiện bởi chủ phòng chat hiện tại.
+• Phản hồi từ server
+100 OK
+202 UNKNOWN NICKNAME
+203 DENIED
+999 UNKNOWN ERROR
+
+Lệnh KICK <NICKNAME>
+• NICKNAME của người bị đưa ra khỏi phòng chat.
+• Được thực hiện bởi chủ phòng chat hiện tại.
+• Phản hồi từ server
+100 OK
+202 UNKNOWN NICKNAME
+203 DENIED
+999 UNKNOWN ERROR
+
+Lệnh TOPIC <TOPIC NAME>
+• TOPIC NAME chủ đề phòng chat, có thể chứa dấu
+cách.
+• Được thực hiện bởi chủ phòng chat hiện tại.
+• Phản hồi từ server
+100 OK
+203 DENIED
+999 UNKNOWN ERROR
+
+Lệnh QUIT
+• Phản hồi từ server
+100 OK
+999 UNKNOWN ERROR
+
+Các thông điệp gửi từ server
+JOIN <NICKNAME>: Có người dùng tham gia phòng chat.
+MSG <NICKNAME> <ROOM MESSAGE>: Có người dùng nhắn tin cho cả phòng chat.
+PMSG <NICKNAME> <MESSAGE>: Có người dùng gửi tin nhắn cá nhân.
+OP <NICKNAME>: Được chuyển quyền chủ phòng từ người dùng khác.
+KICK <KICKED NICKNAME> <OP NICKNAME>: Có người dùng bị đưa ra khỏi phòng chat bởi chủ phòng chat.
+TOPIC <OP NICKNAME> <TOPIC>: Chủ đề phòng chat được thay đổi bởi chủ phòng chat.
+QUIT <NICKNAME>: Có người dùng thoát khỏi phòng chat.

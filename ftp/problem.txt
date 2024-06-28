@@ -1,0 +1,18 @@
+Dựa trên mã nguồn minh họa ứng dụng FTP client 
+https://github.com/lebavui/ltm_20232_149495/blob/main/20240527/ftp_client.c
+Sinh viên thực hiện các yêu cầu sau:
++ Lập trình các chức năng còn thiếu (upload file, đổi tên file, xóa file, in thư mục hiện tại, đổi thư mục hiện tại, tạo thư mục, xóa thư mục)
++ Tạo giao diện dòng lệnh cho phép người dùng lựa chọn sau khi đăng nhập thành công. Ví dụ:
+
+Hãy chọn chức năng để thực hiện:
+1. In nội dung thư mục hiện tại
+2. Đổi thư mục hiện tại
+3. Tạo thư mục 
+4. Xóa thư mục
+5. Download file
+6. Upload file
+7. Đổi tên file
+8. Xóa file
+0. Thoát và ngắt kết nối
+
+Khi chọn chức năng nào thì hiện tiếp menu ứng với chức năng đó. Khi thực hiện xong chức năng thì quay lại màn hình menu trên.
